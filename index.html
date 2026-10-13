@@ -4,17 +4,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>ورود به وبینو منو</title>
+
+  <meta name="theme-color" content="#f5f7f5">
+
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
       min-height: 100vh;
+      padding: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
       font-family: Tahoma, Arial, sans-serif;
       color: #172b25;
       background: #f5f7f5;
@@ -25,10 +31,10 @@
       max-width: 420px;
       padding: 34px 24px;
       text-align: center;
-      background: white;
+      background: #fff;
       border: 1px solid #e5ebe6;
       border-radius: 24px;
-      box-shadow: 0 15px 45px #163b2510;
+      box-shadow: 0 15px 45px rgba(22, 59, 37, 0.07);
     }
 
     .logo {
@@ -39,8 +45,8 @@
     }
 
     .icon {
-      width: 66px;
-      height: 66px;
+      width: 68px;
+      height: 68px;
       margin: 0 auto 22px;
       display: grid;
       place-items: center;
@@ -51,15 +57,15 @@
 
     h1 {
       font-size: 22px;
-      line-height: 1.8;
-      margin: 0 0 14px;
+      line-height: 1.9;
+      margin: 0 0 12px;
     }
 
     p {
       color: #64736b;
       font-size: 14px;
       line-height: 2.2;
-      margin: 0 0 24px;
+      margin: 0 0 22px;
     }
 
     .notice {
@@ -81,7 +87,7 @@
       border-radius: 12px;
       font-weight: bold;
       font-size: 15px;
-      transition: .2s;
+      transition: background 0.2s, transform 0.2s;
     }
 
     .btn:hover {
@@ -96,8 +102,10 @@
     }
   </style>
 </head>
+
 <body>
   <main class="card">
+
     <div class="logo">وبینو منو</div>
 
     <div class="icon">🌐</div>
@@ -114,20 +122,37 @@
     </div>
 
     <a class="btn"
+       id="enterBtn"
        href="https://webinoo-plus.ir/landing/menu">
-       ورود به وبینو منو ←
+      ورود به وبینو منو ←
     </a>
 
     <div class="footer">
-      وبینو منو · منوی آنلاین رستوران و کافی‌شاپ
+      وبینو منو · منوی آنلاین
     </div>
+
   </main>
 
   <script>
-    // بررسی اختیاری وضعیت IP؛ لینک همیشه قابل استفاده است.
+    // حفظ تمام پارامترهای لینک ورودی، مانند mref
+    const params = new URLSearchParams(window.location.search);
+
+    const target = new URL(
+      "https://webinoo-plus.ir/landing/menu"
+    );
+
+    target.search = params.toString();
+
+    document.getElementById("enterBtn").href =
+      target.toString();
+
+    // بررسی اختیاری IP و وضعیت VPN/Proxy
     fetch("https://api.ipapi.is/")
       .then(response => {
-        if (!response.ok) throw new Error("IP check failed");
+        if (!response.ok) {
+          throw new Error("IP check failed");
+        }
+
         return response.json();
       })
       .then(data => {
@@ -135,16 +160,16 @@
 
         if (data.is_vpn === true || data.is_proxy === true) {
           status.textContent =
-            "به نظر می‌رسد از VPN یا Proxy استفاده می‌کنید. " +
-            "لطفاً آن را خاموش کنید و سپس وارد سایت شوید.";
+            "به نظر می‌رسد VPN یا Proxy شما فعال است. " +
+            "لطفاً آن را خاموش کنید و دوباره وارد شوید.";
         } else if (data.location?.country_code === "IR") {
           status.textContent =
             "اتصال شما با IP ایران شناسایی شد. " +
-            "در صورت فعال بودن فیلترشکن، آن را خاموش کنید.";
+            "اگر فیلترشکن روشن است، آن را خاموش کنید.";
         }
       })
       .catch(() => {
-        // در صورت خطا، پیام پیش‌فرض نمایش داده می‌شود.
+        // در صورت در دسترس نبودن سرویس، صفحه همچنان کار می‌کند.
       });
   </script>
 </body>
