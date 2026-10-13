@@ -1,0 +1,117 @@
+```html
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>وب‌سایت خیلی مهم</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Tahoma, sans-serif;
+      background: linear-gradient(135deg, #ff00cc, #3333ff, #00ff99);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .box {
+      width: 90%;
+      max-width: 700px;
+      padding: 40px;
+      text-align: center;
+      background: rgba(0,0,0,.45);
+      border: 7px dashed yellow;
+      border-radius: 37px;
+      transform: rotate(-1deg);
+      box-shadow: 0 0 40px #000;
+    }
+
+    h1 {
+      font-size: 55px;
+      margin: 0 0 20px;
+      animation: wiggle .4s infinite alternate;
+    }
+
+    p {
+      font-size: 22px;
+      line-height: 2;
+    }
+
+    button {
+      border: 0;
+      padding: 18px 35px;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 50px;
+      background: yellow;
+      color: #ff00aa;
+    }
+
+    button:hover {
+      transform: scale(1.2) rotate(8deg);
+    }
+
+    #output {
+      margin-top: 25px;
+      font-size: 25px;
+      min-height: 40px;
+    }
+
+    @keyframes wiggle {
+      from { transform: rotate(-3deg); }
+      to { transform: rotate(3deg); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="box">
+    <h1>🚨 سایت خیلی خفن 🚨</h1>
+
+    <p>
+      به تنها سایتی خوش اومدی که هیچکس نمی‌دونه
+      چرا ساخته شده ولی همه وانمود می‌کنن کاربردیه.
+    </p>
+
+    <p>
+      🥔 سیب‌زمینی امروز با موفقیت آپدیت شد.
+    </p>
+
+    <button onclick="randomNonsense()">
+      روی این دکمه بزن، احتمالاً اتفاقی میفته
+    </button>
+
+    <div id="output"></div>
+  </div>
+
+  <script>
+    const nonsense = [
+      "تبریک! شما برنده‌ی یک عدد هیچی شدید 🎉",
+      "سرور رفت نون بخره.",
+      "سیب‌زمینی تأیید کرد.",
+      "این دکمه از اول هم کار نمی‌کرد.",
+      "خطا: عقل پیدا نشد.",
+      "درخواست شما به کمیته‌ی ماست ارسال شد.",
+      "لطفاً خونسرد باشید؛ کلاً خبری نیست.",
+      "موفق شدید. دقیقاً نمی‌دونیم در چی."
+    ];
+
+    function randomNonsense() {
+      const text =
+        nonsense[Math.floor(Math.random() * nonsense.length)];
+
+      document.getElementById("output").textContent = text;
+    }
+  </script>
+
+</body>
+</html>
+```
