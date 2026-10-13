@@ -4,113 +4,148 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>وب‌سایت خیلی مهم</title>
+  <title>ورود به وبینو منو</title>
   <style>
     * { box-sizing: border-box; }
 
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: Tahoma, sans-serif;
-      background: linear-gradient(135deg, #ff00cc, #3333ff, #00ff99);
-      color: white;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
+      padding: 20px;
+      font-family: Tahoma, Arial, sans-serif;
+      color: #172b25;
+      background: #f5f7f5;
     }
 
-    .box {
-      width: 90%;
-      max-width: 700px;
-      padding: 40px;
+    .card {
+      width: 100%;
+      max-width: 420px;
+      padding: 34px 24px;
       text-align: center;
-      background: rgba(0,0,0,.45);
-      border: 7px dashed yellow;
-      border-radius: 37px;
-      transform: rotate(-1deg);
-      box-shadow: 0 0 40px #000;
+      background: white;
+      border: 1px solid #e5ebe6;
+      border-radius: 24px;
+      box-shadow: 0 15px 45px #163b2510;
+    }
+
+    .logo {
+      color: #16845b;
+      font-size: 25px;
+      font-weight: bold;
+      margin-bottom: 28px;
+    }
+
+    .icon {
+      width: 66px;
+      height: 66px;
+      margin: 0 auto 22px;
+      display: grid;
+      place-items: center;
+      border-radius: 20px;
+      background: #e7f5ed;
+      font-size: 32px;
     }
 
     h1 {
-      font-size: 55px;
-      margin: 0 0 20px;
-      animation: wiggle .4s infinite alternate;
+      font-size: 22px;
+      line-height: 1.8;
+      margin: 0 0 14px;
     }
 
     p {
-      font-size: 22px;
+      color: #64736b;
+      font-size: 14px;
+      line-height: 2.2;
+      margin: 0 0 24px;
+    }
+
+    .notice {
+      background: #fff8e8;
+      border: 1px solid #f3e5bd;
+      border-radius: 12px;
+      padding: 13px;
+      margin-bottom: 22px;
+      font-size: 13px;
       line-height: 2;
     }
 
-    button {
-      border: 0;
-      padding: 18px 35px;
-      font-size: 20px;
+    .btn {
+      display: block;
+      padding: 15px;
+      background: #16845b;
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
       font-weight: bold;
-      cursor: pointer;
-      border-radius: 50px;
-      background: yellow;
-      color: #ff00aa;
+      font-size: 15px;
+      transition: .2s;
     }
 
-    button:hover {
-      transform: scale(1.2) rotate(8deg);
+    .btn:hover {
+      background: #106b49;
+      transform: translateY(-1px);
     }
 
-    #output {
-      margin-top: 25px;
-      font-size: 25px;
-      min-height: 40px;
-    }
-
-    @keyframes wiggle {
-      from { transform: rotate(-3deg); }
-      to { transform: rotate(3deg); }
+    .footer {
+      font-size: 11px;
+      color: #9aa49e;
+      margin-top: 22px;
     }
   </style>
 </head>
-
 <body>
+  <main class="card">
+    <div class="logo">وبینو منو</div>
 
-  <div class="box">
-    <h1>🚨 سایت خیلی خفن 🚨</h1>
+    <div class="icon">🌐</div>
 
-    <p>
-      به تنها سایتی خوش اومدی که هیچکس نمی‌دونه
-      چرا ساخته شده ولی همه وانمود می‌کنن کاربردیه.
-    </p>
+    <h1>برای ورود، فیلترشکن را خاموش کنید</h1>
 
     <p>
-      🥔 سیب‌زمینی امروز با موفقیت آپدیت شد.
+      برای دسترسی بهتر به وبینو منو، لطفاً فیلترشکن خود را خاموش کنید
+      و سپس از طریق دکمه زیر وارد سایت شوید.
     </p>
 
-    <button onclick="randomNonsense()">
-      روی این دکمه بزن، احتمالاً اتفاقی میفته
-    </button>
+    <div class="notice" id="status">
+      لطفاً پس از خاموش کردن فیلترشکن، روی ورود به وبینو منو بزنید.
+    </div>
 
-    <div id="output"></div>
-  </div>
+    <a class="btn"
+       href="https://webinoo-plus.ir/landing/menu">
+       ورود به وبینو منو ←
+    </a>
+
+    <div class="footer">
+      وبینو منو · منوی آنلاین رستوران و کافی‌شاپ
+    </div>
+  </main>
 
   <script>
-    const nonsense = [
-      "تبریک! شما برنده‌ی یک عدد هیچی شدید 🎉",
-      "سرور رفت نون بخره.",
-      "سیب‌زمینی تأیید کرد.",
-      "این دکمه از اول هم کار نمی‌کرد.",
-      "خطا: عقل پیدا نشد.",
-      "درخواست شما به کمیته‌ی ماست ارسال شد.",
-      "لطفاً خونسرد باشید؛ کلاً خبری نیست.",
-      "موفق شدید. دقیقاً نمی‌دونیم در چی."
-    ];
+    // بررسی اختیاری وضعیت IP؛ لینک همیشه قابل استفاده است.
+    fetch("https://api.ipapi.is/")
+      .then(response => {
+        if (!response.ok) throw new Error("IP check failed");
+        return response.json();
+      })
+      .then(data => {
+        const status = document.getElementById("status");
 
-    function randomNonsense() {
-      const text =
-        nonsense[Math.floor(Math.random() * nonsense.length)];
-
-      document.getElementById("output").textContent = text;
-    }
+        if (data.is_vpn === true || data.is_proxy === true) {
+          status.textContent =
+            "به نظر می‌رسد از VPN یا Proxy استفاده می‌کنید. " +
+            "لطفاً آن را خاموش کنید و سپس وارد سایت شوید.";
+        } else if (data.location?.country_code === "IR") {
+          status.textContent =
+            "اتصال شما با IP ایران شناسایی شد. " +
+            "در صورت فعال بودن فیلترشکن، آن را خاموش کنید.";
+        }
+      })
+      .catch(() => {
+        // در صورت خطا، پیام پیش‌فرض نمایش داده می‌شود.
+      });
   </script>
-
 </body>
 </html>
